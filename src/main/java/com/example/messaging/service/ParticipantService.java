@@ -25,7 +25,7 @@ public class ParticipantService {
         System.out.println(participantDao.getMessages(new ObjectId(participant.getParticipants().get(0).toString()),new ObjectId(participant.getParticipants().get(1).toString())).getParticipants().get(0));
 
         Participant updated = participantDao.getMessages(new ObjectId(participant.getParticipants().get(0).toString()),new ObjectId(participant.getParticipants().get(1).toString()));
-        updated.getMessages().add(new MessageResponse(sender,participant.getMessages().get(0).getContent(), LocalDateTime.now()));
+        updated.getMessages().add(new MessageResponse(new ObjectId().toString(),sender,participant.getMessages().get(0).getContent(), LocalDateTime.now()));
         updated.setLastMessageDate(updated.getMessages().get(updated.getMessages().size()-1).getDateTime());
         return participantDao.save(updated);
     }
